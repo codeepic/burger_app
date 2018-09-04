@@ -9,47 +9,19 @@ class App extends Component {
             {name: "Manu", age: 20},
             {name: "Stephanie", age: 26}
         ]
-    }
+    };
 
-    switch2ndPersonNameHandler = () => {
-        console.log('clclllcc', this.state)
-
-        // this.setState({
-        //     persons: [
-        //         {name: 'Edwin', age: 90},
-        //         {name: 'Edwin 2', age: 91},
-        //         {name: 'Edwin 3', age: 89}
-        //     ]
-        // })
-
-
-        // this.setState((prevState, props) => {
+    switchNameHandler = (i, name) => {
         this.setState(prevState => {
-            console.log(prevState.persons.slice(0,1));
-
-            console.log(prevState.persons.slice(2));
-
-            const r = {
+            return {
                 persons: [
-                    ...prevState.persons.slice(0,1),
-                    {...prevState.persons[1], name: 'Manu Chao aaaaaaaaaaaaaaaaaa'},
-                    ...prevState.persons.slice(2)
+                    ...prevState.persons.slice(0,i),
+                    {...prevState.persons[i], name},
+                    ...prevState.persons.slice(i+1)
                 ]
             };
-
-            console.log(this.state.persons);
-
-            return r;
         });
-
-        // this.setState({
-        //     persons: [
-        //         persons.slice(0,1),
-        //         {...persons[1], name: 'Manu Chao'},
-        //         persons.slice(2)
-        //     ]
-        // })
-    }
+    };
 
     render() {
         return (
@@ -57,19 +29,21 @@ class App extends Component {
                 <h1>Burger App</h1>
 
                 <p>
-                    <button onClick={this.switch2ndPersonNameHandler}>Switch Name</button>
+                    <button onClick={this.switchNameHandler.bind(this, 0, 'Mariola')}>Switch Name</button>
                 </p>
 
                 <div className="people">
                     <Person
                         name={this.state.persons[0].name}
-                        age={this.state.persons[0].age} />
+                        age={this.state.persons[0].age}
+                        switchName={this.switchNameHandler.bind(this, 0, 'Marko')} />
                     <Person
                         name={this.state.persons[1].name}
                         age={this.state.persons[1].age}
-                        switchName={this.switch2ndPersonNameHandler}>My hobbies: racing</Person>
+                        switchName={this.switchNameHandler.bind(this, 1, 'Lucas')}>My hobbies: racing</Person>
                     <Person
-                        name={this.state.persons[2].name} />
+                        name={this.state.persons[2].name}
+                        switchName={this.switchNameHandler.bind(this, 2, 'Agnes')} />
                 </div>
             </div>
         );

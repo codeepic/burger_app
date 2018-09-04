@@ -3,12 +3,9 @@ import './Person.css';
 
 export const person = (props) => {
     return (
-        <div className="person">
+        <div className="person" onClick={props.switchName}>
             <p>I am a Person. My name is {props.name} and I am {props.age} years old.</p>
             <p>{props.children}</p>
-            <p>
-                <button onClick={props.switchName}>change name</button>
-            </p>
         </div>
     )
 };
