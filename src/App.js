@@ -12,6 +12,9 @@ class App extends Component {
     };
 
     switchNameHandler = (i, name) => {
+        console.log('%c i', 'border: 2px dashed blue', i);
+        console.log('%c name', 'border: 2px dashed blue', name);
+
         this.setState(prevState => {
             return {
                 persons: [
@@ -36,7 +39,7 @@ class App extends Component {
                     <Person
                         name={this.state.persons[0].name}
                         age={this.state.persons[0].age}
-                        switchName={this.switchNameHandler.bind(this, 0, 'Marko')} />
+                        switchName={(name) => this.switchNameHandler(0, name)} />
                     <Person
                         name={this.state.persons[1].name}
                         age={this.state.persons[1].age}

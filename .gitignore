@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/node_modules_home_linux
+/node_modules_work_windows
 
 # testing
 /coverage
