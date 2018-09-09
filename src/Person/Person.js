@@ -9,7 +9,11 @@ export const person = (props) => {
                 I am a Person. My name is <em>{props.name}</em> and I am <em>{props.age}</em> years old.
             </p>
             <p>{props.children}</p>
-            <p><input type="text" onChange={props.changed} value={props.name} /></p>
+            {/*<p><input type="text" onChange={props.changed} value={props.name} /></p>*/}
+            <p><input type="text" onChange={(event) => props.changed(event.target.value)} value={props.name} /></p>
+            <p>
+                <button onClick={props.delete}>Delete</button>
+            </p>
         </div>
     )
 };
