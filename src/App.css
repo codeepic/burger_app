@@ -5,3 +5,25 @@
 .people{
     display: flex;
 }
+
+
+.green{
+    border: 1px solid #004500;
+    background: #86cd7c;
+}
+
+.red{
+    border: 1px solid #91150e;
+    background: #ff9d7e;
+}
+
+.bold {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.para{
+    width: 70%;
+    padding: 8px;
+    margin: 0 auto;
+}

@@ -95,9 +95,20 @@ class App extends Component {
             );
         }
 
+        // let classes = ['red', 'bold'].join(' ');
+        let classes;
+
+        if(this.state.showPeople){
+            classes = 'green';
+        }else{
+            classes = 'red bold';
+        }
+
         return (
             <div className="App">
                 <h1>Burger App</h1>
+
+                <p className={'para ' + classes}>Some description text</p>
 
                 <p>
                     <button onClick={this.togglePeopleDiv}>Toggle</button>
