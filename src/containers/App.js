@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import Person from "../components/Persons/Person/Person";
 import Radium, {StyleRoot} from "radium";
-import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import Persons from "../components/Persons/Persons";
 // above: Radium imports the default export from the file and
 // StyleRoot imports the named export
@@ -73,27 +71,13 @@ class App extends Component {
     render() {
         let persons = null;
 
-        //key={person.id} --> ey always has to be on the outer element in the map function
         if(this.state.showPeople){
             persons = (
                 <div className="people">
-                    {/*deletePersonHandlernameChangedHandler*/}
                     <Persons
                         persons={this.state.persons}
                         deleted={this.deletePersonHandler}
                         changed={this.nameChangedHandler} />
-                    {/*<Person*/}
-                        {/*name={this.state.persons[0].name}*/}
-                        {/*age={this.state.persons[0].age}*/}
-                        {/*switchName={(name) => this.switchNameHandler(0, name)} />*/}
-                    {/*<Person*/}
-                        {/*name={this.state.persons[1].name}*/}
-                        {/*age={this.state.persons[1].age}*/}
-                        {/*switchName={this.switchNameHandler.bind(this, 1, 'Lucas')}*/}
-                        {/*changed={this.nameChangedHandler}>My hobbies: racing</Person>*/}
-                    {/*<Person*/}
-                        {/*name={this.state.persons[2].name}*/}
-                        {/*switchName={this.switchNameHandler.bind(this, 2, 'Agnes')} />*/}
                 </div>
             );
         }
