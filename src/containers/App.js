@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
-import Person from "./Person/Person";
+import Person from "../components/Persons/Person/Person";
 import Radium, {StyleRoot} from "radium";
-import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 // above: Radium imports the default export from the file and
 // StyleRoot imports the named export
 
