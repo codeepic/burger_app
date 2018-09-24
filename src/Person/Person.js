@@ -1,10 +1,25 @@
 import React from 'react';
 import './Person.css';
+import Radium from "radium";
 //{/*<div className="person" onClick={props.switchName}>*/}
 {/*<div className="person" onClick={() => props.switchName('sjsjsjsjjs')}>*/}
 export const person = (props) => {
+    const style = {
+        border: '3px dashed purple',
+        transition: 'all .2s ease-in',
+
+        ':hover': {
+            backgroundColor: 'pink'
+        },
+
+        '@media (min-width: 500px)': {
+            width: '450px',
+            color: 'orange'
+        }
+    }
+
     return (
-        <div className="person" >
+        <div className="person" style={style}>
             <p>
                 I am a Person. My name is <em>{props.name}</em> and I am <em>{props.age}</em> years old.
             </p>
@@ -18,7 +33,8 @@ export const person = (props) => {
     )
 };
 
-export default person;
+// export default person;
+export default Radium(person);
 
 
 

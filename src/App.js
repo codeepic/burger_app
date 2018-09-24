@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
 import Person from "./Person/Person";
+import Radium, {StyleRoot} from "radium";
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
+// above: Radium imports the default export from the file and
+// StyleRoot imports the named export
 
 class App extends Component {
     state = {
@@ -68,16 +72,18 @@ class App extends Component {
     render() {
         let persons = null;
 
+        //key={person.id} --> ey always has to be on the outer element in the map function
         if(this.state.showPeople){
             persons = (
                 <div className="people">
                     {this.state.persons.map((person, index)=> {
-                        return <Person
-                            name={person.name}
-                            age={person.age}
-                            key={person.id}
-                            delete={() => this.deletePersonHandler(index)}
-                            changed={(val) => this.nameChangedHandler(val, index)}/>
+                        return <ErrorBoundary key={person.id}>
+                            <Person
+                                name={person.name}
+                                age={person.age}
+                                delete={() => this.deletePersonHandler(index)}
+                                changed={(val) => this.nameChangedHandler(val, index)} />
+                            </ErrorBoundary>;
                     })}
                     {/*<Person*/}
                         {/*name={this.state.persons[0].name}*/}
@@ -104,20 +110,25 @@ class App extends Component {
             classes = 'red bold';
         }
 
+        // StyleRoot needs to wrap the whole application in order for
+        // the media query inside Person.js component to work
         return (
-            <div className="App">
-                <h1>Burger App</h1>
+            <StyleRoot>
+                <div className="App">
+                    <h1>Demo App</h1>
 
-                <p className={'para ' + classes}>Some description text</p>
+                    <p className={'para ' + classes}>Some description text</p>
 
-                <p>
-                    <button onClick={this.togglePeopleDiv}>Toggle</button>
-                </p>
+                    <p>
+                        <button onClick={this.togglePeopleDiv}>Toggle</button>
+                    </p>
 
-                {persons}
-            </div>
+                    {persons}
+                </div>
+            </StyleRoot>
         );
     }
 }
 
-export default App;
+// export default App;
+export default Radium(App);
