@@ -3,6 +3,7 @@ import './App.css';
 import Person from "../components/Persons/Person/Person";
 import Radium, {StyleRoot} from "radium";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import Persons from "../components/Persons/Persons";
 // above: Radium imports the default export from the file and
 // StyleRoot imports the named export
 
@@ -76,15 +77,11 @@ class App extends Component {
         if(this.state.showPeople){
             persons = (
                 <div className="people">
-                    {this.state.persons.map((person, index)=> {
-                        return <ErrorBoundary key={person.id}>
-                            <Person
-                                name={person.name}
-                                age={person.age}
-                                delete={() => this.deletePersonHandler(index)}
-                                changed={(val) => this.nameChangedHandler(val, index)} />
-                            </ErrorBoundary>;
-                    })}
+                    {/*deletePersonHandlernameChangedHandler*/}
+                    <Persons
+                        persons={this.state.persons}
+                        deleted={this.deletePersonHandler}
+                        changed={this.nameChangedHandler} />
                     {/*<Person*/}
                         {/*name={this.state.persons[0].name}*/}
                         {/*age={this.state.persons[0].age}*/}
