@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Radium, {StyleRoot} from "radium";
 import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
 // above: Radium imports the default export from the file and
 // StyleRoot imports the named export
 
@@ -83,26 +84,29 @@ class App extends Component {
         }
 
         // let classes = ['red', 'bold'].join(' ');
-        let classes;
-
-        if(this.state.showPeople){
-            classes = 'green';
-        }else{
-            classes = 'red bold';
-        }
+        // let classes;
+        //
+        // if(this.state.showPeople){
+        //     classes = 'green';
+        // }else{
+        //     classes = 'red bold';
+        // }
 
         // StyleRoot needs to wrap the whole application in order for
         // the media query inside Person.js component to work
         return (
             <StyleRoot>
                 <div className="App">
-                    <h1>Demo App</h1>
+                    <Cockpit
+                        showPeople={this.state.showPeople}
+                        toggled={this.togglePeopleDiv} />
+                    {/*<h1>Demo App</h1>*/}
 
-                    <p className={'para ' + classes}>Some description text</p>
+                    {/*<p className={'para ' + classes}>Some description text</p>*/}
 
-                    <p>
-                        <button onClick={this.togglePeopleDiv}>Toggle</button>
-                    </p>
+                    {/*<p>*/}
+                        {/*<button onClick={this.togglePeopleDiv}>Toggle</button>*/}
+                    {/*</p>*/}
 
                     {persons}
                 </div>
