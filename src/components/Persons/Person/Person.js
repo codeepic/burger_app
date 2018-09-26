@@ -4,6 +4,7 @@ import Radium from "radium";
 import PropTypes from "prop-types";
 
 export class Person extends Component{
+    inputElement
     style = {
         border: '3px dashed purple',
         transition: 'all .2s ease-in',
@@ -18,6 +19,13 @@ export class Person extends Component{
         }
     };
 
+    componentDidMount(){
+        console.log('Person component mounted');
+
+        if(this.props.position === 0) //focus Person input element if it's the first one
+            this.inputElement.focus();
+    }
+
     render() {
         return (
             <div className="person" style={this.style}>
@@ -26,6 +34,7 @@ export class Person extends Component{
                 </p>
                 <p>{this.props.children}</p>
                 <p><input type="text"
+                          ref={(inp) => this.inputElement = inp}
                           onChange={(event) => this.props.changed(event.target.value)}
                           value={this.props.name} /></p>
                 <p>
@@ -37,6 +46,7 @@ export class Person extends Component{
 };
 
 Person.propTypes = {
+    position: PropTypes.number,
     click: PropTypes.func,
     name: PropTypes.string,
     age: PropTypes.number,

@@ -11,6 +11,7 @@ const persons = props => {
     return props.persons.map((person, index)=> {
         return <ErrorBoundary key={person.id}>
             <Person
+                position={index}
                 name={person.name}
                 age={person.age}
                 delete={() => props.deleted(index)}
