@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './Person.css';
 import Radium from "radium";
-//{/*<div className="person" onClick={props.switchName}>*/}
-{/*<div className="person" onClick={() => props.switchName('sjsjsjsjjs')}>*/}
-export const person = (props) => {
-    const style = {
+import PropTypes from "prop-types";
+
+export class Person extends Component{
+    style = {
         border: '3px dashed purple',
         transition: 'all .2s ease-in',
 
@@ -16,25 +16,35 @@ export const person = (props) => {
             width: '450px',
             color: 'orange'
         }
-    }
+    };
 
-    return (
-        <div className="person" style={style}>
-            <p>
-                I am a Person. My name is <em>{props.name}</em> and I am <em>{props.age}</em> years old.
-            </p>
-            <p>{props.children}</p>
-            {/*<p><input type="text" onChange={props.changed} value={props.name} /></p>*/}
-            <p><input type="text" onChange={(event) => props.changed(event.target.value)} value={props.name} /></p>
-            <p>
-                <button onClick={props.delete}>Delete</button>
-            </p>
-        </div>
-    )
+    render() {
+        return (
+            <div className="person" style={this.style}>
+                <p>
+                    I am a Person. My name is <em>{this.props.name}</em> and I am <em>{this.props.age}</em> years old.
+                </p>
+                <p>{this.props.children}</p>
+                <p><input type="text"
+                          onChange={(event) => this.props.changed(event.target.value)}
+                          value={this.props.name} /></p>
+                <p>
+                    <button onClick={this.props.delete}>Delete</button>
+                </p>
+            </div>
+        )
+    }
 };
 
+Person.propTypes = {
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
+}
+
 // export default person;
-export default Radium(person);
+export default Radium(Person);
 
 
 

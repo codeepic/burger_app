@@ -16,21 +16,6 @@ class App extends Component {
         showPeople: false
     };
 
-    switchNameHandler = (i, name) => {
-        console.log('%c i', 'border: 2px dashed blue', i);
-        console.log('%c name', 'border: 2px dashed blue', name);
-
-        this.setState(prevState => {
-            return {
-                persons: [
-                    ...prevState.persons.slice(0,i),
-                    {...prevState.persons[i], name},
-                    ...prevState.persons.slice(i+1)
-                ]
-            };
-        });
-    };
-
     nameChangedHandler = (val , index) => {
         this.setState(prevState => {
            return {
@@ -41,18 +26,9 @@ class App extends Component {
                ]
            }
         });
-
-        // this.setState({
-        //     persons: [
-        //         {name: "Maxddd", age: 38},
-        //         {name: event.target.value, age: 20},
-        //         {name: "Stephaniddd e", age: 26}
-        //     ]
-        // })
     };
 
     togglePeopleDiv = () => {
-        //toggle .people divs
         const shows = this.state.showPeople;
         this.setState({showPeople: !shows})
     };
@@ -83,15 +59,6 @@ class App extends Component {
             );
         }
 
-        // let classes = ['red', 'bold'].join(' ');
-        // let classes;
-        //
-        // if(this.state.showPeople){
-        //     classes = 'green';
-        // }else{
-        //     classes = 'red bold';
-        // }
-
         // StyleRoot needs to wrap the whole application in order for
         // the media query inside Person.js component to work
         return (
@@ -100,14 +67,6 @@ class App extends Component {
                     <Cockpit
                         showPeople={this.state.showPeople}
                         toggled={this.togglePeopleDiv} />
-                    {/*<h1>Demo App</h1>*/}
-
-                    {/*<p className={'para ' + classes}>Some description text</p>*/}
-
-                    {/*<p>*/}
-                        {/*<button onClick={this.togglePeopleDiv}>Toggle</button>*/}
-                    {/*</p>*/}
-
                     {persons}
                 </div>
             </StyleRoot>
