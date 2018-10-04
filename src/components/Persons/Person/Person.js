@@ -4,7 +4,7 @@ import Radium from "radium";
 import PropTypes from "prop-types";
 
 export class Person extends Component{
-    inputElement
+    inputElement;
     style = {
         border: '3px dashed purple',
         transition: 'all .2s ease-in',
@@ -19,11 +19,18 @@ export class Person extends Component{
         }
     };
 
+    constructor(props) {
+        super(props);
+
+        this.inputElement = React.createRef();
+    }
+
     componentDidMount(){
         console.log('Person component mounted');
 
         if(this.props.position === 0) //focus Person input element if it's the first one
-            this.inputElement.focus();
+            // this.inputElement.focus();
+            this.inputElement.current.focus();
     }
 
     render() {
@@ -34,10 +41,15 @@ export class Person extends Component{
                 </p>
                 <p>{this.props.children}</p>
                 <p><input type="text"
-                          ref={(inp) => this.inputElement = inp}
+                          ref={this.inputElement}
                           onChange={(event) => this.props.changed(event.target.value)}
                           value={this.props.name} /></p>
                 <p>
+                {/*<p><input type="text"*/}
+                          {/*ref={(inp) => this.inputElement = inp}*/}
+                          {/*onChange={(event) => this.props.changed(event.target.value)}*/}
+                          {/*value={this.props.name} /></p>*/}
+                {/*<p>*/}
                     <button onClick={this.props.delete}>Delete</button>
                 </p>
             </div>
