@@ -6,6 +6,9 @@ import Cockpit from "../components/Cockpit/Cockpit";
 // above: Radium imports the default export from the file and
 // StyleRoot imports the named export
 
+//Context API
+export const AuthContext = React.createContext();
+
 class App extends Component {
     state = {
         persons: [
@@ -13,7 +16,8 @@ class App extends Component {
             {id: '23v', name: "Manu", age: 20},
             {id: '34d', name: "Stephanie", age: 26}
         ],
-        showPeople: false
+        showPeople: false,
+        authenticated: false
     };
 
     nameChangedHandler = (val , index) => {
@@ -31,6 +35,15 @@ class App extends Component {
     togglePeopleDiv = () => {
         const shows = this.state.showPeople;
         this.setState({showPeople: !shows})
+    };
+
+    loginHandler = () => {
+        console.log('login handler');
+        this.setState({authenticated: true});
+    };
+
+    logoutHandler = () => {
+      this.setState({authenticated: false});
     };
 
     deletePersonHandler = (index) => {
@@ -66,8 +79,14 @@ class App extends Component {
                 <div className="App">
                     <Cockpit
                         showPeople={this.state.showPeople}
-                        toggled={this.togglePeopleDiv} />
-                    {persons}
+                        toggled={this.togglePeopleDiv}
+                        login={this.loginHandler}
+                        logout={this.logoutHandler}
+                        />
+
+                    <AuthContext.Provider value={this.state.authenticated}>
+                        {persons}
+                    </AuthContext.Provider>
                 </div>
             </StyleRoot>
         );

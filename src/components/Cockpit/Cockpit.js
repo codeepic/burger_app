@@ -18,6 +18,8 @@ const cockpit = props => {
             <p>
                 <button onClick={props.toggled}>Toggle</button>
             </p>
+            <p><button onClick={props.login}>Log in</button></p>
+            <p><button onClick={props.logout}>Log out</button></p>
         </div>
     )
 }
